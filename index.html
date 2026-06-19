@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBD Nimah! 💗</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            color: #4a4a4a;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        h1, h2 {
+            color: #ff477e;
+            margin-bottom: 20px;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 30px;
+            position: relative;
+            min-height: 100px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #yesBtn {
+            background-color: #ff477e;
+            color: white;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+        }
+
+        #noBtn {
+            background-color: #a3a3a3;
+            color: white;
+            position: relative;
+            z-index: 999;
+        }
+
+        .gifts-grid {
+            display: flex;
+            justify-content: space-around;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .gift-box {
+            background: #ff7096;
+            color: white;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .gift-box:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .gift-box.opened {
+            background: #ffb3c6;
+            transform: scale(0.9);
+            cursor: default;
+        }
+
+        .para-display {
+            min-height: 100px;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+            font-size: 16px;
+            line-height: 1.5;
+            display: none;
+        }
+
+        .photo-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .photo-gallery img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-color: #ddd;
+        }
+
+        .final-wish {
+            font-size: 26px;
+            font-weight: 800;
+            color: #ff477e;
+            margin-top: 30px;
+            animation: pulse 1.5s infinite;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="screen1" class="container">
+        <h1>Will u enjoy ur birthday?????</h1>
+        <div class="btn-container" id="btnContainer">
+            <button id="yesBtn" onclick="goToScreen2()">Yes</button>
+            <button id="noBtn" onmouseover="moveNoButton()" onclick="moveNoButton()">No</button>
+        </div>
+    </div>
+
+    <div id="screen2" class="container hidden">
+        <h2>Click the boxes to unlock ur texts ykyk 👀</h2>
+        <p style="font-size: 14px; color: #888;">Open all 3 boxes to read the message!</p>
+        
+        <div class="gifts-grid">
+            <div class="gift-box" id="gift1" onclick="openGift(1)">🎁</div>
+            <div class="gift-box" id="gift2" onclick="openGift(2)">🎁</div>
+            <div class="gift-box" id="gift3" onclick="openGift(3)">🎁</div>
+        </div>
+
+        <div id="paraText" class="para-display"></div>
+
+        <button id="nextBtn" class="hidden" onclick="goToScreen3()" style="background: #ff477e; color: white; margin-top: 20px;">Next →</button>
+    </div>
+
+    <div id="screen3" class="container hidden">
+        <h1>SOME PEAK BADDIE PICS HEHE 💖</h1>
+        
+        <div class="photo-gallery">
+            <img src="Screenshot_20260619-233325_Gallery.jpg" alt="Memory 1">
+            <img src="Screenshot_20260619-233340_Gallery.jpg" alt="Memory 2">
+            <img src="Screenshot_20260619-233731_Gallery.jpg" alt="Memory 3">
+        </div>
+
+        <div class="final-wish">
+            HAVE THE HAPPIEST BIRTHDAY NIMMAHHHH!💗
+        </div>
+    </div>
+
+    <script>
+        const paragraphs = [
+            "Happy 15th birthday Nimah! lwky cannot believe ur actually 15 now aunty hehe!! just wanted to say ur literally such an amazing friend to have around and i'm so glad we talk like u always bring the best energy dynamic ykyk .",
+            "ur literally so funny and caring even when u try not to be, and ur lowkey one of the easiest people to talk to. i can always count on u for a good laugh or just to chill and talk about whatever. really appreciate how u always keep it real with me.",
+            "ur turning 15 so u gotta make this year count fr. i hope today gives u all the good things and lotsssss anddd lotsss of cake, and literally everything u wanttttt because u deserve it all. don't let anyone ruin the vibe todayy okiesss ?? haha.",
+            "just wanted to remind u that i'm always here for u no matter what. hope we keep making more crazy memories together as we grow up. enjoy ur day to the absolute fullest. HAVE THE HAPPIEST BIRTHDAY NIMMAHHHH!💗 ILY SOSOSOSSO MUCHHHH🫶 MGBUU🥹"
+        ];
+
+        const boxContent = [
+            paragraphs[0],
+            paragraphs[1],
+            `${paragraphs[2]}<br><br>${paragraphs[3]}`
+        ];
+
+        let openedGifts = new Set();
+
+        function moveNoButton() {
+            const noBtn = document.getElementById('noBtn');
+            const padding = 50;
+            const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+            const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+            
+            let randomX = Math.floor(Math.random() * maxX);
+            let randomY = Math.floor(Math.random() * maxY);
+            
+            randomX = Math.max(padding, randomX);
+            randomY = Math.max(padding, randomY);
+
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        function goToScreen2() {
+            document.getElementById('screen1').classList.add('hidden');
+            document.getElementById('screen2').classList.remove('hidden');
+        }
+
+        function openGift(boxNum) {
+            const gift = document.getElementById(`gift${boxNum}`);
+            const display = document.getElementById('paraText');
+            
+            if (!gift.classList.contains('opened')) {
+                gift.classList.add('opened');
+                gift.innerText = '✨';
+                openedGifts.add(boxNum);
+            }
+
+            display.style.display = 'block';
+            display.innerHTML = boxContent[boxNum - 1];
+
+            if (openedGifts.size === 3) {
+                document.getElementById('nextBtn').classList.remove('hidden');
+            }
+        }
+
+        function goToScreen3() {
+            document.getElementById('screen2').classList.add('hidden');
+            document.getElementById('screen3').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
